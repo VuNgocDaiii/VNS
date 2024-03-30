@@ -446,7 +446,7 @@ button {
     height: auto;
     padding: 30px 0px;
     text-align: center;
-    box-shadow: 0px 0px 70px 0px #e6e6e5;
+    box-shadow: 2px 2px 10px rgba(207, 197, 197, 0.7);
     border-radius: 20px;
 }
 
@@ -455,7 +455,7 @@ button {
     height: auto;
     padding: 30px 0px;
     text-align: center;
-    box-shadow: 0px 0px 70px 0px #e6e6e5;
+    box-shadow: 2px 2px 10px rgba(207, 197, 197, 0.7);
     margin-left: 20px;
     border-radius: 20px;
 }
@@ -465,7 +465,7 @@ button {
     height: auto;
     padding: 30px 0px;
     text-align: center;
-    box-shadow: 0px 0px 70px 0px #e6e6e5;
+    box-shadow: 2px 2px 10px rgba(207, 197, 197, 0.7);
     border-radius: 20px;
 }
 

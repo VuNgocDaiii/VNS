@@ -1,0 +1,55 @@
+body{
+    background-image: linear-gradient(#d1e3f5,#dcdcde);
+    background-repeat: no-repeat;
+}
+
+.welcome{
+    text-align: center;
+    margin-bottom: 10px;
+}
+.user-img{
+    width: 30%;
+    margin: 15px auto;
+    margin-top: 50px;
+}
+.user-img img{
+    width: 100%;
+    border-radius: 50%;
+    box-shadow: 0px 3px 12px rgba(165, 160, 160, 0.5);
+}
+.des{
+    width: 5%;
+    margin: 0px auto;
+    margin-bottom: 30px;
+}
+.des img{
+    width: 100%;
+}
+
+.content{
+    background-color: white;
+}
+.item{
+    display: flex;
+    align-items: center;
+}
+.item img{
+    height: 40px;
+    margin: 10px 12px;
+}
+hr{
+    margin: 0 auto;
+    width: 90%;
+}
+
+.but{
+    margin: 100px 0;
+    margin-top: 150px;
+}
+.loginbt{
+    padding: 20px 50px;
+    background-image: linear-gradient(rgb(235, 27, 27),rgb(238, 79, 79));
+    color: white;
+    border-radius: 30px;
+    font-size: 15px;
+}
