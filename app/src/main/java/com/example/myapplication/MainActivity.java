@@ -1,13 +1,11 @@
 package com.example.myapplication;
+
 import android.os.Bundle;
 import android.webkit.WebView;
-import android.os.Bundle;
+import android.webkit.WebViewClient;
+import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,10 +15,30 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         webView = findViewById(R.id.webView);
-        webView.loadUrl("file:///android_asset/apps.html");
         webView.getSettings().setJavaScriptEnabled(true);
-        webView.getSettings().setAllowFileAccess(true);
+        webView.setWebViewClient(new WebViewClient());
+        webView.addJavascriptInterface(new WebViewInterface(), "Android");
+        webView.loadUrl("file:///android_asset/apps.html");
     }
 
+    // Phương thức để chuyển hướng đến trang apps.html
+    public void loadAppsPage() {
+        // chạy cùng luồng @@
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                webView.loadUrl("file:///android_asset/apps.html");
+            }
+        });
+    }
+
+    public class WebViewInterface {
+        @android.webkit.JavascriptInterface
+        public void handleLoginSuccess() {
+            loadAppsPage();
+        }
+    }
 }
+
