@@ -44,9 +44,10 @@
           console.log("Username: " + username);
           console.log("Password: " + password);
           if (username === "admin" && password === "admin") {
-              Android.handleLoginSuccess();
+             Android.handleLoginSuccess();
           } else {
-              alert("Incorrect username or password. Please try again.");
+            console.log("Login failed");
+            Android.showAlert("Incorrect username or password. Please try again.");
           }
       });
    </script>

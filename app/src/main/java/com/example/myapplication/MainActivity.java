@@ -1,6 +1,10 @@
 package com.example.myapplication;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
@@ -11,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
     private WebView webView;
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +43,21 @@ public class MainActivity extends AppCompatActivity {
         @android.webkit.JavascriptInterface
         public void handleLoginSuccess() {
             loadAppsPage();
+        }
+
+        @android.webkit.JavascriptInterface
+        public void showAlert(String message) {
+            Log.d("WebViewInterface", "showAlert called with message: " + message);
+            // Show alert dialog here
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+            builder.setMessage(message)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Dismiss the dialog if needed
+                            dialog.dismiss();
+                        }
+                    })
+                    .show();
         }
     }
 }
