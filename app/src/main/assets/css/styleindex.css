@@ -1,0 +1,59 @@
+.header{
+    height: 65px;
+    padding: 10px 15px;
+    width: 100%;
+    margin: 0;
+    display: flex;
+}
+.header img{
+    height: 100%;
+    margin-right: 17px;
+}
+.header-name{
+    margin: 0;
+    font-weight: bold;
+    font-size: 20px;
+}
+.slogan{
+    margin: 0;
+    font-style: italic;
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+.banner_img img{
+    height: 215px;
+    width: 100%;
+}
+
+.booking{
+    font-weight: bold;
+    text-align: center;
+    margin-top: 30px;
+    padding: 0;
+}
+
+.footer{
+    position: fixed;
+    bottom: -3px;
+}
+.control{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    height: 60px;
+    background-color: rgb(247, 246, 245);
+}
+.ctr-item{
+    text-align: center;
+    padding-top: 5px;
+    width: 24%;
+}
+.ctr-item img{
+    width: 30%;
+    height: 25px;
+    margin-bottom: 2px;
+}
+.ctr-active{
+    border-top: solid 2px red;
+}
