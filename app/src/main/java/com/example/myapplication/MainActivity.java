@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebViewClient(new WebViewClient());
         webView.addJavascriptInterface(new WebViewInterface(), "Android");
-        webView.loadUrl("file:///android_asset/apps.html");
+        webView.loadUrl("file:///android_asset/index.html");
     }
 
     // Phương thức để chuyển hướng đến trang apps.html
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                webView.loadUrl("file:///android_asset/apps.html");
+                webView.loadUrl("file:///android_asset/index.html");
             }
         });
     }
