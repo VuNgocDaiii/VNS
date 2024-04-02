@@ -93,6 +93,25 @@
       </div>
       <!-- banner section end -->
    </div>
+   <script>
+      // Tạo một đối tượng Android giả lập để kiểm tra
+      var Android = {
+        getLoggedInState: function() {
+          // Trả về giá trị isLoggedIn từ SharedPreferences
+          // hoặc biến global đã lưu trữ
+          return true; // Thay đổi giá trị này tùy theo trạng thái đăng nhập
+        }
+      };
+
+      // Lấy giá trị isLoggedIn từ SharedPreferences
+      let isLoggedIn = Android.getLoggedInState();
+      // Tìm phần tử HTML của nút
+      const loginButton = document.querySelector('.loginbt');
+
+      // Kiểm tra trạng thái đăng nhập của người dùng
+      if (isLoggedIn === true) console.log(1); else
+      console.log(0);
+   </script>
    <!-- header section end -->
    <!-- about section start -->
    <div class="about_section">

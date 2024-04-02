@@ -3,38 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Leaflet Map</title>
+    <title>Đặt Xe</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <style>
-        html, body, #map-container, #map {
+
+        html, body, #map {
             height: 100%;
             margin: 0;
             padding: 0;
         }
-        #map-container {
-
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: -1;
-            touch-action: none;
-        }
-
         #map {
-            height: 100%;
             width: 100%;
+        }
+        #search-container {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            z-index: 1000;
+        }
+        #search-input {
+            padding: 5px;
+            font-size: 14px;
+        }
+        #search-button {
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+        #order-container {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            z-index: 1000;
+        }
+        #order-button {
+            padding: 5px 10px;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
-<div id="map-container">
-    <div id="map"></div>
+<div id="map"></div>
+<div id="search-container">
+    <input type="text" id="search-input" placeholder="Nhập địa chỉ">
+    <button id="search-button">Tìm kiếm</button>
+</div>
+<div id="order-container">
+    <button id="order-button">Đặt Xe</button>
+    <span id="distance"></span>
 </div>
 
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script>
-    var map = L.map('map', {
+    const nominatimUrl = 'https://nominatim.openstreetmap.org/search?format=json&q=';
+    const markerList = [];
+     var map = L.map('map', {
         scrollWheelZoom: true
     }).setView([51.505, -0.09], 13);
 
@@ -47,15 +84,52 @@
         navigator.geolocation.getCurrentPosition(function(position) {
             var lat = position.coords.latitude;
             var lng = position.coords.longitude;
-
-            L.marker([lat, lng]).addTo(map)
-                .bindPopup('Your current location')
-                .openPopup();
-
             map.setView([lat, lng], 13);
+
         });
     } else {
         console.log('Geolocation is not supported by this browser.');
+    }
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    document.getElementById('search-button').addEventListener('click', function() {
+        const searchQuery = document.getElementById('search-input').value;
+        fetchLocation(searchQuery);
+    });
+
+    document.getElementById('order-button').addEventListener('click', function() {
+        if (markerList.length === 2) {
+            const distance = markerList[0].getLatLng().distanceTo(markerList[1].getLatLng());
+            alert(`Tính năng đang được phát triển`);
+        } else {
+            alert('Vui lòng chọn điểm đi và điểm đến trước khi đặt xe.');
+        }
+    });
+
+    function fetchLocation(query) {
+        fetch(nominatimUrl + query)
+            .then(response => response.json())
+            .then(data => {
+                if (data.length > 0) {
+                    const { lat, lon } = data[0];
+                    map.setView([lat,lon],25);
+                    const marker = L.marker([lat, lon]).addTo(map);
+                    markerList.push(marker);
+                    map.fitBounds(marker.getBounds().pad(0.5));
+
+                    if (markerList.length === 2) {
+
+                        const distance = markerList[0].getLatLng().distanceTo(markerList[1].getLatLng());
+                        document.getElementById('distance').textContent = `Khoảng cách: ${(distance / 1000).toFixed(2)} km`;
+                    }
+                } else {
+                    console.log('Không tìm thấy địa chỉ');
+                }
+            })
+            .catch(error => console.error(error));
     }
 </script>
 </body>
