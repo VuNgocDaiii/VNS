@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +9,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <style>
-
+        body {
+            font-family: Arial, sans-serif; /* Sử dụng font hệ thống */
+        }
         html, body, #map {
             height: 100%;
             margin: 0;
@@ -33,6 +35,7 @@
         #search-input {
             padding: 5px;
             font-size: 14px;
+            font-family: Arial, sans-serif; /* Sử dụng font hệ thống */
         }
         #search-button {
             padding: 5px 10px;
@@ -79,7 +82,7 @@
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    // Getlocation
+    // Lấy vị trí
     if ('geolocation' in navigator) {
         navigator.geolocation.getCurrentPosition(function(position) {
             var lat = position.coords.latitude;
@@ -88,7 +91,7 @@
 
         });
     } else {
-        console.log('Geolocation is not supported by this browser.');
+        Android.showAlert('Trình duyệt này không hỗ trợ định vị.');
     }
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -103,9 +106,9 @@
     document.getElementById('order-button').addEventListener('click', function() {
         if (markerList.length === 2) {
             const distance = markerList[0].getLatLng().distanceTo(markerList[1].getLatLng());
-            alert(`Tính năng đang được phát triển`);
+            Android.showAlert(`Tính năng đang được phát triển`);
         } else {
-            alert('Vui lòng chọn điểm đi và điểm đến trước khi đặt xe.');
+            Android.showAlert('Vui lòng chọn điểm đi và điểm đến trước khi đặt xe.');
         }
     });
 
@@ -126,7 +129,7 @@
                         document.getElementById('distance').textContent = `Khoảng cách: ${(distance / 1000).toFixed(2)} km`;
                     }
                 } else {
-                    console.log('Không tìm thấy địa chỉ');
+                   Android.showAlert('Không tìm thấy địa chỉ');
                 }
             })
             .catch(error => console.error(error));
