@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
     <link rel="stylesheet" href="css/stylehome.css">
 </head>
 
@@ -19,7 +20,6 @@
 
             <span class="header-button" style="font-size:30px;cursor:pointer;" onclick="openNav()">&#9776;</span>
         </div>
-
 
         <div class="space">
 
@@ -89,6 +89,30 @@
             <div class="login">
                 <a href="" class="loginbt">Đăng xuất</a>
             </div>
+            <script>
+                console.log(1)
+                let isLoggedIn = false;
+                document.getElementById('login-form').addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    var username = document.getElementById('username').value;
+                    var password = document.getElementById('password').value;
+                    console.log("Username: " + username);
+                    console.log("Password: " + password);
+                    if (username === "admin" && password === "admin") {
+                    // loggin duoc
+                      console.log(1);
+                       isLoggedIn = true;
+                       Android.handleLoginSuccess();
+                    } else {
+                    // login sai
+                    console.log(0);
+                      console.log("Login failed");
+                      isLoggedIn = false;
+
+                      Android.showAlert("Incorrect username or password. Please try again.");
+                    }
+                });
+            </script>
         </div>
 
     </div>
@@ -113,28 +137,28 @@
     </div>
 
     <div class="content">
-        <a href="" style="text-decoration: none; color: black;">
-            <div class="item" style="margin-top: 0;">
-                <h3 class="item-head">Xe máy</h3>
-                <div class="item-image">
-                    <img src="images/icon-1.png" alt="">
-                </div>
+
+        <a href="./maptiler.html" class="item" style="margin-top: 0;">
+            <h3 class="item-head">Xe máy</h3>
+            <div class="item-image">
+                <img src="images/icon-1.png" alt="">
             </div>
         </a>
 
-        <div class="item">
+
+        <a href="./maptiler.html" class="item">
             <h3 class="item-head">Ô tô</h3>
             <div class="item-image">
                 <img src="images/icon-2.png" alt="">
             </div>
-        </div>
+        </a>
 
-        <div class="item">
+        <a href="" class="item">
             <h3 class="item-head">Chuyển đồ</h3>
             <div class="item-image">
                 <img src="images/icon-3.png" alt="">
             </div>
-        </div>
+        </a>
     </div>
 
     <script src="js/mycode.js"></script>

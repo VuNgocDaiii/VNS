@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         webView.setWebViewClient(new WebViewClient());
         sharedPreferences = getPreferences(Context.MODE_PRIVATE);
         webView.addJavascriptInterface(new WebViewInterface(), "Android");
-        webView.loadUrl("file:///android_asset/index.html");
+        webView.loadUrl("file:///android_asset/homev2.html");
         WebView.setWebContentsDebuggingEnabled(true);
         webView.getSettings().setAllowFileAccessFromFileURLs(true);
     }
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                webView.loadUrl("file:///android_asset/index.html");
+                webView.loadUrl("file:///android_asset/homev2.html");
             }
         });
     }
