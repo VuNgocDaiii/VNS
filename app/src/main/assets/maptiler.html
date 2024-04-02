@@ -10,52 +10,54 @@
 
     <style>
         body {
-            font-family: Arial, sans-serif; /* Sử dụng font hệ thống */
-        }
-        html, body, #map {
-            height: 100%;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
         }
         #map {
             width: 100%;
+            height: 100vh; /* 80% chiều cao của viewport */
+        }
+        #search-container, #order-container {
+            position: absolute;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            z-index: 1000;
         }
         #search-container {
-            position: absolute;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 10px;
-            border-radius: 5px;
-            display: flex;
-            justify-content: center;
-            z-index: 1000;
-        }
-        #search-input {
-            padding: 5px;
-            font-size: 14px;
-            font-family: Arial, sans-serif; /* Sử dụng font hệ thống */
-        }
-        #search-button {
-            padding: 5px 10px;
-            font-size: 14px;
+            top: 20px;
         }
         #order-container {
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: rgba(255, 255, 255, 0.8);
+            bottom: 20px;
+        }
+        #search-input {
             padding: 10px;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
             border-radius: 5px;
-            display: flex;
-            justify-content: center;
-            z-index: 1000;
+            border: 1px solid #ccc;
+            margin-right: 10px;
+            width: 60%;
+        }
+        #search-button, #order-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        #search-button:hover, #order-button:hover {
+            background-color: #0056b3;
         }
         #order-button {
-            padding: 5px 10px;
-            font-size: 14px;
+            margin-left: 10px;
+        }
+        #distance {
+            margin-left: 10px;
         }
     </style>
 </head>
@@ -74,8 +76,9 @@
 <script>
     const nominatimUrl = 'https://nominatim.openstreetmap.org/search?format=json&q=';
     const markerList = [];
-     var map = L.map('map', {
-        scrollWheelZoom: true
+    var map = L.map('map', {
+        scrollWheelZoom: true,
+        zoomControl: false
     }).setView([51.505, -0.09], 13);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -88,15 +91,10 @@
             var lat = position.coords.latitude;
             var lng = position.coords.longitude;
             map.setView([lat, lng], 13);
-
         });
     } else {
         Android.showAlert('Trình duyệt này không hỗ trợ định vị.');
     }
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
 
     document.getElementById('search-button').addEventListener('click', function() {
         const searchQuery = document.getElementById('search-input').value;
@@ -118,18 +116,16 @@
             .then(data => {
                 if (data.length > 0) {
                     const { lat, lon } = data[0];
-                    map.setView([lat,lon],25);
+                    map.setView([lat, lon], 25);
                     const marker = L.marker([lat, lon]).addTo(map);
                     markerList.push(marker);
                     map.fitBounds(marker.getBounds().pad(0.5));
-
                     if (markerList.length === 2) {
-
                         const distance = markerList[0].getLatLng().distanceTo(markerList[1].getLatLng());
                         document.getElementById('distance').textContent = `Khoảng cách: ${(distance / 1000).toFixed(2)} km`;
                     }
                 } else {
-                   Android.showAlert('Không tìm thấy địa chỉ');
+                    Android.showAlert('Không tìm thấy địa chỉ');
                 }
             })
             .catch(error => console.error(error));
