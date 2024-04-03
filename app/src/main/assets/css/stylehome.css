@@ -95,20 +95,21 @@ a{
 .item-image{
     width: 100%;
     text-align: center;
+    margin: 15px auto;
 }
 .item-image img{
-    width: 80%;
+    width: 90%;
 }
 .item{
     box-shadow: 2px 2px 10px rgba(207, 197, 197, 0.7);
     text-align: center;
     display: block;
     border-radius: 30px;
-    padding-top: 5px;
-    margin: 30px 30px;
+    padding: 15px;
+    margin: 30px;
 }
 .item-head{
-    margin-bottom: 0;
+    margin: 10px;
 }
 
 
@@ -217,5 +218,4 @@ a{
     color: #42D4FB;
     background-color: rgb(151, 145, 145);
 }
-//
 
