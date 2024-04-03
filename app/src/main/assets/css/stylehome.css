@@ -114,6 +114,7 @@ a{
 
 /* Nav */
 .sidenav {
+
     height: 100%;
     width: 0;
     position: fixed;
@@ -156,6 +157,7 @@ a{
 }
 .nav-head{
     height: 20%;
+
 }
 .nav-avt{
     width: 30%;
@@ -215,3 +217,5 @@ a{
     color: #42D4FB;
     background-color: rgb(151, 145, 145);
 }
+//
+
