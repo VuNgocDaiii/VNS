@@ -145,6 +145,7 @@
             fetchLocation(searchQuery);
             if (markerList.length === 0) {
                 this.textContent = "Xác nhận điếm đến";
+                Android.showAlert('Xác nhận điểm đón thành công');
             }
         });
         document.getElementById('order-button').addEventListener('click', function () {
@@ -167,6 +168,7 @@
                         markerList.push(marker);
                         map.fitBounds(marker.getBounds().pad(0.5));
                         if (markerList.length === 2) {
+                            Android.showAlert('Xác nhận điểm đến thành công');
                             const distance = markerList[0].getLatLng().distanceTo(markerList[1].getLatLng());
                             document.getElementById('distance').textContent = `Khoảng cách: ${(distance / 1000).toFixed(2)} km`;
                         }
