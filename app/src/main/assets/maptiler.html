@@ -49,7 +49,7 @@
         }
 
         #search-button,
-        #order-button {
+        #order-button, #reset-button {
             padding: 10px;
             font-size: 16px;
             border-radius: 5px;
@@ -61,7 +61,7 @@
         }
 
         #search-button:hover,
-        #order-button:hover {
+        #order-button:hover, #reset-button:hover {
             background-color: #0056b3;
         }
 
@@ -111,7 +111,7 @@
         <button id="search-button">Xác nhận điểm đón</button>
     </div>
     <div id="order-container">
-        <button id="order-button" style="padding: 10px 30px;margin-left: 10px; display: none;">
+        <button id="reset-button" style="padding: 10px 30px;margin-left: 10px; display: none;">
             <a href="maptiler.html">Chọn lại điểm đón</a>
         </button>
         <button id="order-button" style="padding: 10px 30px;">Đặt Xe</button>
@@ -147,11 +147,6 @@
         document.getElementById('search-button').addEventListener('click', function () {
             const searchQuery = document.getElementById('search-input').value;
             fetchLocation(searchQuery);
-            if (markerList.length === 0) {
-                this.textContent = "Xác nhận điếm đến";
-                document.getElementById('order-button').style.display = 'block';
-                Android.showAlert('Xác nhận điểm đón thành công');
-            }
         });
         document.getElementById('order-button').addEventListener('click', function () {
             if (markerList.length === 2) {
@@ -171,15 +166,22 @@
                         const { lat, lon } = data[0];
                         map.setView([lat, lon], 25);
                         const marker = L.marker([lat, lon]).addTo(map);
+
+                        if (markerList.length === 0) {
+                            const searchButton = document.getElementById('search-button');
+                            searchButton.textContent = "Xác nhận điếm đến";
+                            document.getElementById('reset-button').style.display = 'block';
+                            Android.showAlert('Xác nhận điểm đón thành công');
+                        }
                         if (markerList.length === 2) markerList.splice(1, 1);
+
                         markerList.push(marker);
-                        map.fitBounds(marker.getBounds().pad(0.5));
+                        console.log(1);
                         if (markerList.length === 2) {
                             Android.showAlert('Xác nhận điểm đến thành công');
-                            const distance = markerList[0].getLatLng().distanceTo(markerList[1].getLatLng());
-                            document.getElementById('distance').textContent = `Khoảng cách: ${(distance / 1000).toFixed(2)} km`;
                         }
                     } else {
+
                         Android.showAlert('Không tìm thấy địa chỉ');
                     }
                 })
