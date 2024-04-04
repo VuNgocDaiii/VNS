@@ -53,6 +53,7 @@
   background-color: transparent;
 }
 
+
 .destination:read-only {
   cursor: text;
 }
