@@ -89,6 +89,7 @@
         }
 
         a{
+            color: white;
             text-decoration: none !important;
             outline: none !important;
             -webkit-tap-highlight-color: transparent;
@@ -110,6 +111,9 @@
         <button id="search-button">Xác nhận điểm đón</button>
     </div>
     <div id="order-container">
+        <button id="order-button" style="padding: 10px 30px;margin-left: 10px; display: none;">
+            <a href="maptiler.html">Chọn lại điểm đón</a>
+        </button>
         <button id="order-button" style="padding: 10px 30px;">Đặt Xe</button>
         <span id="distance"></span>
     </div>
@@ -145,6 +149,7 @@
             fetchLocation(searchQuery);
             if (markerList.length === 0) {
                 this.textContent = "Xác nhận điếm đến";
+                document.getElementById('order-button').style.display = 'block';
                 Android.showAlert('Xác nhận điểm đón thành công');
             }
         });
