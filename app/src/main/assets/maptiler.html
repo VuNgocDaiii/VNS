@@ -107,7 +107,7 @@
 
     <div id="search-container">
         <input type="text" id="search-input" placeholder="Nhập địa chỉ">
-        <button id="search-button">Tìm kiếm</button>
+        <button id="search-button">Xác nhận điểm đón</button>
     </div>
     <div id="order-container">
         <button id="order-button">Đặt Xe</button>
@@ -142,7 +142,13 @@
             const searchQuery = document.getElementById('search-input').value;
             fetchLocation(searchQuery);
         });
-
+        document.getElementById('search-button').addEventListener('click', function () {
+        const searchQuery = document.getElementById('search-input').value;
+            fetchLocation(searchQuery);
+            if (markerList.length === 0) {
+                this.textContent = "Xác nhận điếm đến";
+            }
+        });
         document.getElementById('order-button').addEventListener('click', function () {
             if (markerList.length === 2) {
                 const distance = markerList[0].getLatLng().distanceTo(markerList[1].getLatLng());
