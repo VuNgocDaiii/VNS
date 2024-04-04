@@ -157,6 +157,7 @@
             }
         });
 
+
         function fetchLocation(query) {
             fetch(nominatimUrl + query)
                 .then(response => response.json())
@@ -165,6 +166,7 @@
                         const { lat, lon } = data[0];
                         map.setView([lat, lon], 25);
                         const marker = L.marker([lat, lon]).addTo(map);
+                        if (markerList.length === 2) markerList.splice(1, 1);
                         markerList.push(marker);
                         map.fitBounds(marker.getBounds().pad(0.5));
                         if (markerList.length === 2) {
