@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/stylehome.css">
 </head>
 
-<body>
+<body id="body">
 
     <div class="bg">
 
@@ -27,6 +27,29 @@
 
     </div>
 
+
+<div class="lang" id="lang">
+    <div class="language" >
+        <a href="javascript:void(0)" class="closebtn" onclick="closeLang()"
+            style="float: right; margin: 10px; font-size: 18px;">
+            &times;
+        </a>
+        <h3 style="margin: 10px 20px;">Lựa chọn ngôn ngữ</h3>
+        <hr style="margin: 0;">
+        <div class="lang-content">
+            <h4 style="margin: 10px 20px;">Tiếng Việt</h4>
+            <div class="lang-choice">
+                <div></div>
+            </div>
+        </div>
+        <div class="lang-content">
+            <h4 style="margin: 10px 20px;">Tiếng Anh</h4>
+            <div class="lang-choice">
+                <div style="background-color: white;"></div>
+            </div>
+        </div>
+    </div>
+</div>
     <div class="header-menu"> <!--content menu-->
 
         <div id="mySidenav" class="sidenav">
@@ -49,47 +72,45 @@
             </div>
 
             <div class="nav-content">
-                <a href="" class="nav-item">
+                <a href="billhis.html" class="nav-item">
                     <div class="nav-icon">
-                        <img src="images/icon-4.png" alt="">
+                        <img src="images/icon-history.png" alt="">
                     </div>
                     <p class="nav-choice">Lịch sử đặt xe</p>
                 </a>
 
                 <a href="rank.html" class="nav-item">
                     <div class="nav-icon">
-                        <img src="images/icon-5.png" alt="">
+                        <img src="images/icon-ranking.png" alt="">
                     </div>
                     <p class="nav-choice">Hạng thành viên</p>
                 </a>
 
                 <a href="notification.html" class="nav-item">
                     <div class="nav-icon">
-                        <img src="images/mail-icon.png" alt="">
+                        <img src="images/icon-notification.png" alt="">
                     </div>
                     <p class="nav-choice">Thông báo</p>
                 </a>
 
                 <a href="" class="nav-item">
                     <div class="nav-icon">
-                        <img src="images/call-icon.png" alt="">
+                        <img src="images/icon-driver.png" alt="">
                     </div>
-                    <p class="nav-choice">Liên hệ</p>
+                    <p class="nav-choice">Tính năng tài xế</p>
                 </a>
 
-                <a href="" class="nav-item">
+                <a class="nav-item" onclick="openLang()">
                     <div class="nav-icon">
-                        <img src="images/icon-7.png" alt="">
+                        <img src="images/icon-language.png" alt="">
                     </div>
                     <p class="nav-choice">Đổi ngôn ngữ</p>
                 </a>
 
-
-
             </div>
 
-            <div class="login">
-                <a href="" class="loginbt">Đăng xuất</a>
+            <div class="login" id="logout">
+                <a href="login.html" class="loginbt">Đăng xuất</a>
             </div>
             <script>
                 console.log(1)
@@ -110,7 +131,6 @@
                     console.log(0);
                       console.log("Login failed");
                       isLoggedIn = false;
-
                       Android.showAlert("Incorrect username or password. Please try again.");
                     }
                 });
@@ -132,7 +152,7 @@
                 <div class="time-image">
                     <img src="images/calendar.png" alt="">
                 </div>
-                <h4>Vui lòng chọn thời gian</h4>
+                <h4>Thời gian đặt xe</h4>
             </div>
             <h3 style="margin-bottom: 0;">Dịch vụ</h3>
         </div>
