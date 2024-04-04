@@ -138,12 +138,10 @@
             Android.showAlert('Trình duyệt này không hỗ trợ định vị.');
         }
 
+
+
         document.getElementById('search-button').addEventListener('click', function () {
             const searchQuery = document.getElementById('search-input').value;
-            fetchLocation(searchQuery);
-        });
-        document.getElementById('search-button').addEventListener('click', function () {
-        const searchQuery = document.getElementById('search-input').value;
             fetchLocation(searchQuery);
             if (markerList.length === 0) {
                 this.textContent = "Xác nhận điếm đến";
@@ -152,7 +150,7 @@
         document.getElementById('order-button').addEventListener('click', function () {
             if (markerList.length === 2) {
                 const distance = markerList[0].getLatLng().distanceTo(markerList[1].getLatLng());
-                Android.showAlert(`Tính năng đang được phát triển`);
+                window.location="booking.html";
             } else {
                 Android.showAlert('Vui lòng chọn điểm đi và điểm đến trước khi đặt xe.');
             }

@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         WebView.setWebContentsDebuggingEnabled(true);
         webView.getSettings().setAllowFileAccessFromFileURLs(true);
     }
+
     private class JavaScriptInterface {
         @JavascriptInterface
         public void setLoggedInState(boolean isLoggedIn) {
