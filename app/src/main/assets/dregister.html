@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="css/styledregister.css">
+</head>
+
+<body style="background-color: #f4f4f4;margin: 0; font-family: Arial, Helvetica, sans-serif;">
+
+    <div style="background-color: white;width: 100%; display: flex; padding: 15px 0;padding-top: 30px;">
+        <a href="driver.html" class="rollback">
+            <div class="rb">
+                <img src="images/rollback.png" alt="">
+            </div>
+        </a>
+        <h2 style="font-weight: bolder;width: 80%; margin: 0;
+            border-radius: 20px; color: black; margin-left: 8%;
+            font-family: Arial, Helvetica, sans-serif;background-color: white;">
+            Đăng ký tài xế mới
+        </h2>
+    </div>
+
+    <form class="content">
+        <h3 style="margin-top: 5px;">Thông tin chung</h3>
+        <div style="margin: 10px;display: flex;justify-content: space-between;">
+            <div class="fname">
+                <label for="fname" class="lb">Họ*</label><br>
+                <input type="text" id="fname" class="ip" placeholder="Nhập họ của bạn" required>
+            </div>
+
+            <div class="fname">
+                <label for="lname" class="lb">Tên*</label><br>
+                <input type="text" id="lname" class="ip" placeholder="Nhập tên của bạn" required>
+            </div>
+        </div>
+
+        <div class="item">
+            <label for="cccd" class="lb">CCCD*</label><br>
+            <input type="number" id="cccd" class="ip" placeholder="Số căn cước công dân" required>
+        </div>
+
+        <div class="item">
+            <label for="phone" class="lb">Số điện thoại di động*</label><br>
+            <input type="number" id="phone" class="ip" placeholder="SĐT" required>
+        </div>
+
+        <div class="item">
+            <label for="age" class="lb">Tuổi</label><br>
+            <input type="number" id="age" placeholder="Nhập tuổi của bạn" class="ip">
+        </div>
+
+        <div class="item">
+            <label for="city" class="lb">Thành phố</label><br>
+            <input type="text" id="city" class="ip" placeholder="Nhập thành phố của bạn">
+        </div>
+
+
+        <h3 style="display: inline-block; margin-bottom: 10px;">Thông tin lái xe</h3>*
+        <div style="margin: 10px;display: flex;justify-content: space-between;">
+            <div class="fname" style="width: 50%;">
+                <label for="vehicle" class="lb">Thương hiệu xe</label><br>
+                <input type="text" id="vehicle" class="ip" placeholder="Nhập tên xe" required>
+            </div>
+
+            <div class="fname">
+                <label for="type" class="lb"></label><br>
+                <select id="type" required>
+                    <option>Loại xe</option>
+                    <option>Ô tô</option>
+                    <option>Xe máy</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="item">
+            <label for="lic" class="lb">Giấy phép lái xe</label><br>
+            <input type="number" id="lic" class="ip" placeholder="Mã số GPLX" required>
+        </div>
+
+        <div style="margin: 10px;display: flex;justify-content: space-between;">
+            <div class="fname">
+                <label for="date" class="lb">Ngày cấp</label><br>
+                <input type="text" id="date" class="ip" placeholder="Ngày cấp GPLX" required>
+            </div>
+
+            <div class="fname">
+                <label for="licrank" class="lb">Loại</label><br>
+                <input type="text" id="licrank" class="ip" placeholder="Hạng GPLX" required>
+            </div>
+        </div>
+
+        <!-- <div class="item">
+            <label for="lic" class="lb">Ảnh chụp bằng lái xe</label><br>
+            <input type="file" id="lic" class="ip" style="border: none;margin-top: 5px;" required>
+        </div> -->
+
+        <div class="but">
+            <button onclick="noti()" class="bt">Đăng ký ngay</button>
+        </div>
+    </form>
+
+    <script>
+        function noti() {
+            // var elem = document.getElementsByTagName('input');
+            // var check = 1;
+            // elem.forEach(element => {
+            //     if (element.hasAttribute('required') && element.value == "") {
+            //     check=0;
+            // }
+            // });
+            
+            // if(check==0) 
+            Android.showAlert("Bạn đã đăng ký trở thành tài xế thành công!");
+            window.location="homev2.html";
+        }
+    </script>
+
+</body>
+
+</html>
