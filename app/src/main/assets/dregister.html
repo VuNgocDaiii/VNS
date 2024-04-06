@@ -11,7 +11,8 @@
 
 <body style="background-color: #f4f4f4;margin: 0; font-family: Arial, Helvetica, sans-serif;">
 
-    <div style="background-color: white;width: 100%; display: flex; padding: 15px 0;padding-top: 30px;position: sticky;top: 0;">
+    <div
+        style="background-color: white;width: 100%; display: flex; padding: 15px 0;padding-top: 30px;position: sticky;top: 0;">
         <a href="driver.html" class="rollback">
             <div class="rb">
                 <img src="images/rollback.png" alt="">
@@ -69,9 +70,9 @@
             <div class="fname">
                 <label for="type" class="lb"></label><br>
                 <select id="type" required>
-                    <option>Loại xe</option>
-                    <option>Ô tô</option>
-                    <option>Xe máy</option>
+                    <option value="">Loại xe</option>
+                    <option value="1">Ô tô</option>
+                    <option value="2">Xe máy</option>
                 </select>
             </div>
         </div>
@@ -110,19 +111,32 @@
 
     <script>
         function noti() {
-            // var elem = document.getElementsByTagName('input');
-            // var check = 1;
-            // elem.forEach(element => {
-            //     if (element.hasAttribute('required') && element.value == "") {
-            //     check=0;
-            // }
-            // });
-            
-            // if(check==0) 
-            Android.showAlert("Bạn đã đăng ký trở thành tài xế thành công!");
-            window.location="homev2.html";
+            var elems = document.getElementsByTagName('input');
+            var check = 1;
+            Array.from(elems).forEach(function (element) {
+                if (element.hasAttribute('required') && element.value == "") {
+                    check = 0;
+                }
+            });
+
+            elems = document.getElementsByTagName('select');
+            Array.from(elems).forEach(function (element) {
+                if (element.hasAttribute('required') && element.value == "") {
+                    check = 0;
+                }
+            });
+
+            if (check == 1) {
+                window.location = "homev2.html";
+                Android.showAlert("Bạn đã đăng ký trở thành tài xế thành công!");
+            }
+            else {
+                Android.showAlert("Vui lòng nhập đầy đủ thông tin yêu cầu.");
+            }
         }
     </script>
+
+
 
 </body>
 
