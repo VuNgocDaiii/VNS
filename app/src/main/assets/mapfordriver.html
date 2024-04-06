@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đặt Xe</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            width: 100%;
+            height: 100vh;
+        }
+
+        #search-container,
+        #order-container {
+            position: absolute;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        #search-container {
+            top: 50px;
+        }
+
+        #order-container {
+            bottom: 20px;
+        }
+
+        #search-input {
+            padding: 10px;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-right: 10px;
+            width: 90%;
+        }
+
+        #search-button,
+        #order-button, #reset-button {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #search-button:hover,
+        #order-button:hover, #reset-button:hover {
+            background-color: #0056b3;
+        }
+
+        #order-button {
+            margin-left: 10px;
+        }
+
+        #distance {
+            margin-left: 10px;
+        }
+
+        .rollback {
+            position: absolute;
+            top: 10px;
+            z-index: 1001;
+        }
+
+        .rb {
+            height: 20px;
+            width: 50px;
+        }
+
+        .rb img {
+            width: 100%;
+        }
+
+        a{
+            color: white;
+            text-decoration: none !important;
+            outline: none !important;
+            -webkit-tap-highlight-color: transparent;
+        }
+    </style>
+</head>
+
+<body>
+<div id="map"></div>
+
+<a href="homev2.html" class="rollback">
+    <div class="rb">
+        <img src="images/rollback.png" alt="">
+    </div>
+</a>
+
+<div id="search-container">
+    <input type="text" id="search-input" placeholder="Nhập địa chỉ">
+    <button id="search-button">Xác nhận điểm bắt đầu</button>
+</div>
+<div id="order-container">
+    <button id="reset-button" style="padding: 10px 30px;margin-left: 10px; display: none;">
+        <a href="maptiler.html">Chọn lại điểm bắt đầu</a>
+    </button>
+    <button id="order-button" style="padding: 10px 30px;">Bắt đầu</button>
+    <span id="distance"></span>
+</div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+    const nominatimUrl = 'https://nominatim.openstreetmap.org/search?format=json&q=';
+    const markerList = [];
+    var map = L.map('map', {
+        scrollWheelZoom: true,
+        zoomControl: false
+    }).setView([51.505, -0.09], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    //
+    // Lấy vị trí
+    if ('geolocation' in navigator) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            var lat = position.coords.latitude;
+            var lng = position.coords.longitude;
+            map.setView([lat, lng], 13);
+        });
+    } else {
+        Android.showAlert('Trình duyệt này không hỗ trợ định vị.');
+    }
+
+
+
+    document.getElementById('search-button').addEventListener('click', function () {
+        const searchQuery = document.getElementById('search-input').value;
+        fetchLocation(searchQuery);
+    });
+    document.getElementById('order-button').addEventListener('click', function () {
+        if (markerList.length === 2) {
+            const distance = markerList[0].getLatLng().distanceTo(markerList[1].getLatLng());
+            window.location="historyofdriver.html";
+        } else {
+            Android.showAlert('Vui lòng chọn điểm đi và điểm đến.');
+        }
+    });
+
+
+    function fetchLocation(query) {
+        fetch(nominatimUrl + query)
+            .then(response => response.json())
+            .then(data => {
+                if (data.length > 0) {
+                    const { lat, lon } = data[0];
+                    map.setView([lat, lon], 25);
+                    const marker = L.marker([lat, lon]).addTo(map);
+
+                    if (markerList.length === 0) {
+                        const searchButton = document.getElementById('search-button');
+                        searchButton.textContent = "Xác nhận điếm đến";
+                        document.getElementById('reset-button').style.display = 'block';
+                        Android.showAlert('Xác nhận điểm bắt đầu thành công');
+                    }
+                    if (markerList.length === 2) markerList.splice(1, 1);
+
+                    markerList.push(marker);
+                    console.log(1);
+                    if (markerList.length === 2) {
+                        Android.showAlert('Xác nhận điểm đến thành công');
+                    }
+                } else {
+                    Android.showAlert('Không tìm thấy địa chỉ');
+                }
+            })
+            .catch(error => console.error(error));
+    }
+</script>
+</body>
+
+</html>

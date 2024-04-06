@@ -1,9 +1,8 @@
 .avatar{
    position: absolute;
    top: 150px;
-   left:130px;
-
-
+   width: 100%;
+   text-align: center;
 }
 .bg img{
    width: 100%;
@@ -12,15 +11,13 @@
 #rank{
    position: relative;
    top:70px;
-   left:90px;
    display:flex;
    margin: 0;
-
+   justify-content: center;
 }
 .information{
    position: relative;
    top:50px;
-
 }
 .border1{
    padding:5px;
@@ -35,5 +32,33 @@
    margin-left: 20px;
    padding:5px;
 
+}
 
+.rank-icon{
+   width: 15%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.rank-icon img{
+   width: 70%;
+}
+
+.bank{
+   position: relative;
+   display: flex;
+}
+.bank-link{
+   border-radius: 10px;
+   padding: 5px 10px;
+   margin: 15px 0;
+   display: flex;
+   align-items: center;
+   background-color: rgb(72, 168, 195);
+}
+.bank-link p{
+   margin: 0;
+   font-weight: bold;
+   color: white;
+   font-size: 14px;
 }
