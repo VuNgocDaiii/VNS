@@ -153,7 +153,7 @@
             const distance = markerList[0].getLatLng().distanceTo(markerList[1].getLatLng());
             window.location="historyofdriver.html";
         } else {
-            Android.showAlert('Vui lòng chọn điểm đi và điểm đến trước khi đặt xe.');
+            Android.showAlert('Vui lòng chọn điểm đi và điểm đến.');
         }
     });
 
@@ -171,7 +171,7 @@
                         const searchButton = document.getElementById('search-button');
                         searchButton.textContent = "Xác nhận điếm đến";
                         document.getElementById('reset-button').style.display = 'block';
-                        Android.showAlert('Xác nhận điểm đón thành công');
+                        Android.showAlert('Xác nhận điểm bắt đầu thành công');
                     }
                     if (markerList.length === 2) markerList.splice(1, 1);
 
@@ -181,7 +181,6 @@
                         Android.showAlert('Xác nhận điểm đến thành công');
                     }
                 } else {
-
                     Android.showAlert('Không tìm thấy địa chỉ');
                 }
             })
