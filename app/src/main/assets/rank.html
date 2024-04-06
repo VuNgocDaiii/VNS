@@ -82,19 +82,54 @@
             height: 100%;
             width: 60%;
             padding-left: 20px;
-            background-color: #4caf50;
+            background-color: #41D2F9;
             border-radius: 10px;
+        }
+
+        a {
+            color: #1f1f1f;
+            text-decoration: none !important;
+            outline: none !important;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .rollback {
+            width: 15%;
+        }
+
+        .rb {
+            height: auto;
+            width: 100%;
+        }
+
+        .rb img {
+            width: 100%;
         }
     </style>
 </head>
 
-<body>
+<body style="font-family: Arial, Helvetica, sans-serif;">
+
+    <div
+        style="background-color: white;width: 100%; display: flex; padding: 15px 0;padding-top: 30px; position: sticky; top: -3px;">
+        <a href="homev2.html" class="rollback">
+            <div class="rb">
+                <img src="images/rollback.png" alt="">
+            </div>
+        </a>
+        <h2 style="font-weight: bolder;width: 80%; margin: 0;
+            border-radius: 20px; color: black; margin-left: 15%;
+            font-family: Arial, Helvetica, sans-serif;background-color: white;">
+            Hạng thành viên
+        </h2>
+    </div>
+
     <div class="container-fluid" style="padding: 0;text-align: center;">
 
         <div class="membership-card">
             <h1 style="font-weight: bolder;">HẠNG THÀNH VIÊN</h1>
             <img src="images/profile_avt.png" width="100px">
-            <img src="images/rank_table.png" >
+            <img src="images/rank_table.png">
 
 
             <div style="width: 100%; margin: 30px 0;margin-top: 50px;">
@@ -106,7 +141,7 @@
 
 
             <div style="margin:10px">
-                <p style="margin: 0;color: yellowgreen;font-weight: bold;">Vàng</p>
+                <p style="margin: 0;color: #41D2F9;font-weight: bold;">Vàng</p>
 
                 <div class="progress-bar">
 
